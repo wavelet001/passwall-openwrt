@@ -8,21 +8,18 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: WR1200JS
+name: AR8132
 
 on:
   repository_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - master
-    paths:
-      - '.config'
-  schedule:
-    - cron: 0 8 * * 5
-  watch:
-    types: started
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+#  schedule:
+#    - cron: 0 8 * * 5
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
