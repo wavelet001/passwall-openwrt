@@ -8,21 +8,18 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: NEWIFI 3
+name: AR8132
 
 on:
   repository_dispatch:
-  release:
-    types: published
-  push:
-    branches:
-      - master
-    paths:
-      - 'newifi3.config'
-  schedule:
-    - cron: 0 8 * * 5
-  watch:
-    types: started
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+#  schedule:
+#    - cron: 0 8 * * 5
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
@@ -31,7 +28,7 @@ env:
   CONFIG_FILE: newifi3.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
